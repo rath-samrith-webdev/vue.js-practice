@@ -1,28 +1,37 @@
 <template>
-  <div class="row p-3 d-flex justify-content-center align-content-center">
-    <div class="row-cols-2">
-      <input class="form-control-sm"
-          type="text"
-          placeholder="Please Enter First Name ..."
-          v-model="first_name"
-      />
-      <input class="form-control-sm"
-          type="text"
-          placeholder="Please Enter Last Name ..."
-          v-model="last_name"
-      />
-      <input class="form-control-sm" type="number" placeholder="Please Enter Age..." v-model="age" />
-      <input class="form-control-sm" type="date" v-model="date_of_birth" />
-    </div>
-    <div class="card row-cols-2">
-      <p>Your first name is: {{ first_name }}</p>
-      <p>Your last name is: {{ last_name }}</p>
-      <p>Your age is: {{ age }}</p>
-      <p>Your full name is: {{ getFullName }}</p>
-      <p :class="{color_status}">Your Your Status: {{ getStatus }}</p>
-      <p>Your date of birth is: {{ date_of_birth }}</p>
+  <div class="container-md d-flex justify-content-around">
+    <div class="card"  v-for="(fav,index) in fav_food" :key="index">
+      <div class="card-header">
+        <h5>{{fav.name}} | {{fav.price}}</h5>
+      </div>
+      <div class="card-body text-start">
+        <h6>Food Name: {{fav.name}}</h6>
+        <p>The person who love the food: {{fav.person}}</p>
+        <p>Price: {{fav.price}} dollar(s)</p>
+      </div>
+      <div class="card-footer text-start">
+        <p>{{fav.msg}}</p>
+      </div>
     </div>
   </div>
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Publish Date</th>
+      <th scope="col">Author</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  v-for="(item,index) in book" :key="index">
+      <th scope="row">{{index+1}}</th>
+      <td>{{item.bookname}}</td>
+      <td>{{item.publish_date}}</td>
+      <td>{{item.author}}</td>
+    </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
@@ -34,6 +43,54 @@ export default {
       age: "",
       date_of_birth: "",
       color:'',
+      book:[
+        {
+          bookname:"Harry Potter",
+          publish_date:"4/May/2024",
+          author:"J. K. Rowling"
+        },
+        {
+          bookname:"Death note",
+          publish_date:"4/May/2024",
+          author:"Tsugumi Ohba"
+        },
+        {
+          bookname:"Jujutsu Kaisen",
+          publish_date:"4/May/2024",
+          author:"GEGE"
+        },
+        {
+          bookname:"Tensei Sura",
+          publish_date:"4/May/2024",
+          author:"FUSE"
+        }
+      ],
+      fav_food:[
+        {
+          name:"Apple",
+          person:"Soching",
+          price:1.5,
+          msg:"I enjoy them a lot..!!!"
+        },
+        {
+          name:"Orange",
+          person: "Veak",
+          price: 1.99,
+          msg: "It is my most favorite!!!"
+        },
+        {
+          name: "Beer",
+          person:"Chanthou",
+          price: 5,
+          msg:"I love it...!!!!!"
+        },
+        {
+          name: "Wood Apple",
+          price: 23,
+          person:"John",
+          msg:"I love it...!!!!!"
+        }
+      ]
     };
   },
   computed: {
