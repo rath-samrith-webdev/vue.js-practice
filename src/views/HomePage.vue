@@ -1,20 +1,11 @@
 <template>
   <div class="home">
     <!-- Welcome section -->
-    <WelcomePage/>
+    <WelcomePageVue />
 
     <!-- Fruits list -->
     <div class="row justify-content-center fruits-list">
-      <div class="col-md-4" v-for="fruit in fruits" :key="fruit.id">
-        <div class="card mb-3">
-          <img :src="fruit.imageUrl" :alt="fruit.name" class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title">{{ fruit.name }}</h5>
-            <p class="card-text">Price: {{ fruit.price }}</p>
-            <p class="card-text">{{ fruit.description }}</p>
-          </div>
-        </div>
-      </div>
+      <FruitComponent class="col-md-4" v-for="fruit in fruits" :key="fruit.id" :fruit="fruit" />
     </div>
 
     <!-- Sponsor cards -->
@@ -37,11 +28,13 @@
 </template>
 
 <script>
-import WelcomePage from "@/components/WelcomePage.vue";
+import WelcomePageVue from '@/components/WelcomePage.vue';
+import FruitComponent from '@/components/FruitComponent.vue';
+
 export default {
-  name: 'HomePage',
   components:{
-    WelcomePage
+    WelcomePageVue,
+    FruitComponent
   },
   data() {
     return {
