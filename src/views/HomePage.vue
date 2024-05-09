@@ -10,19 +10,7 @@
 
     <!-- Sponsor cards -->
     <div class="row justify-content-center sponsor-cards">
-      <div class="col-md-4" v-for="sponsor in sponsors" :key="sponsor.id">
-        <div class="card mb-3">
-          <img
-              :src="sponsor.logoUrl"
-              :alt="sponsor.name"
-              class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ sponsor.name }}</h5>
-            <p class="card-text">{{ sponsor.description }}</p>
-          </div>
-        </div>
-      </div>
+        <SponsorComponent v-for="sponsor in sponsors" :key="sponsor.id" :sponsor="sponsor" />
     </div>
   </div>
 </template>
@@ -30,11 +18,12 @@
 <script>
 import WelcomePageVue from '@/components/WelcomePage.vue';
 import FruitComponent from '@/components/FruitComponent.vue';
-
+import SponsorComponent from "@/components/SponsorComponent.vue";
 export default {
   components:{
     WelcomePageVue,
-    FruitComponent
+    FruitComponent,
+    SponsorComponent
   },
   data() {
     return {
