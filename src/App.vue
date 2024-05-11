@@ -95,20 +95,22 @@
             <p class="text-start">Status : {{ e_mailState }}</p>
           </div>
         </div>
-        <div
-          v-if="f_nameState && l_nameState && e_mailState == 'Pass'"
-          class="text-success text-center"
-        >
+        <div v-if="f_nameState && l_nameState && e_mailState === 'Pass'" class="text-success text-center">
           <h6>You can now register your account.</h6>
         </div>
       </div>
     </div>
+    <PersonDetail/>
   </div>
 </template>
 
 <script>
+import PersonDetail from "@/components/PersonDetail.vue";
 export default {
   name: "App",
+  components:{
+    PersonDetail,
+  },
   data() {
     return {
       firstname: "",
