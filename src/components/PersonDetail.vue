@@ -54,9 +54,9 @@
         if(!age){
           return ""
         }else if(age<18 && age>0){
-          return "bg-success text-white"
+          return "text-start bg-success text-white"
         }else{
-          return "bg-primary text-white"
+          return "text-start bg-primary text-white"
         }
       }
     }

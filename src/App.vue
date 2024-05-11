@@ -101,15 +101,25 @@
       </div>
     </div>
     <PersonDetail/>
+    <div class="container-md d-flex justify-content-center flex-column gap-3 mt-3">
+      <div class="bg-success-subtle text-center">
+        <h4>Student Profiles</h4>
+      </div>
+      <div class="container-sm d-flex justify-content-around gap-3">
+          <StudentProfile v-for="student in students" :key="student.id" :student="student" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import PersonDetail from "@/components/PersonDetail.vue";
+import StudentProfile from "@/components/StudentProfile.vue";
 export default {
   name: "App",
   components:{
     PersonDetail,
+    StudentProfile
   },
   data() {
     return {
@@ -118,6 +128,24 @@ export default {
       email: "",
       password: "",
       confirm: "",
+      students:[
+        {
+          name:"Gold D Roger",
+          date_of_birth:"1995/05/01"
+        },
+        {
+          name:"Monkey D Luffy",
+          date_of_birth:"1995/05/01"
+        },
+        {
+          name:"Mashal D Teach",
+          date_of_birth:"1995/05/01"
+        }
+        ,{
+          name:"Red hair Shank",
+          date_of_birth:"1995/05/01"
+        }
+      ],
       products: [
         {
           product_name: "Ramen",
