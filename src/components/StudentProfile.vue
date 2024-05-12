@@ -12,7 +12,7 @@ export default {
 <template>
   <div class="card p-2">
     <div class="card-image">
-      <img class="img-thumbnail" src="" v-bind:alt="student.name">
+      <img class="img-thumbnail" width="250" v-bind:src="student.profile" v-bind:alt="student.name">
     </div>
     <div class="card-body">
       <p class="text-start">Student's name: <span>{{student.name}}</span></p>
