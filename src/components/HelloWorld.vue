@@ -1,32 +1,26 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <form class="d-flex flex-column gap-2">
+      <div class="d-flex flex-column">
+        <label for="first" class="text-start">Name</label>
+        <input class="form-control" type="text" id="first" name="first" v-model="name"  placeholder="First Name" />
+        <span class="text-danger" v-if="message.name">{{message.name}}</span>
+      </div>
+      <div class="d-flex flex-column">
+        <label for="last" class="text-start">Age</label>
+        <input class="form-control" type="number" id="last" v-model="age" name="last" placeholder="Age" />
+        <span class="text-danger" v-if="message.age">{{message.age}}</span>
+      </div>
+      <div class="d-flex flex-column">
+        <label for="password" class="text-start">Password</label>
+        <input class="form-control" type="password" id="password" v-model="password" name="password" placeholder="password" />
+        <span class="text-danger" v-if="message.password">{{message.password}}</span>
+      </div>
+      <div class="d-flex flex-column">
+        <button class="btn btn-primary" @click="confirm">Submit</button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -35,7 +29,42 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  data(){
+    return {
+      name:"",
+      age:null,
+      password:null,
+      is_confirmed:false,
+      message:[]
+    }
+  },
+  watch:{
+    age(value){
+      this.age = value;
+      if(value>0){
+        this.message['age']=''
+      }else {
+        this.message['age']='Age must greater than 0'
+      }
+    },
+    name(value){
+      this.name = value
+      if(value.length>3){
+        this.message['name']=''
+      }else {
+        this.message['name']='Name must be greater than 3 character'
+      }
+    },
+    password(){
+      if(this.password.length > 8){
+        this.message['password']=''
+      }else {
+        this.message['password'] = 'Password must be greater 8 characters'
+      }
+    }
+  },
+
 }
 </script>
 
@@ -43,16 +72,5 @@ export default {
 <style scoped>
 h3 {
   margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
