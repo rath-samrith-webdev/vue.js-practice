@@ -18,9 +18,19 @@
         <span class="text-danger" v-if="message.password">{{message.password}}</span>
       </div>
       <div class="d-flex flex-column">
-        <button class="btn btn-primary" @click="confirm">Submit</button>
+        <button class="btn btn-primary" @click="show">Submit</button>
       </div>
     </form>
+   <div id="modals" class="card p-3">
+      <div class="card-header">
+        <h3>Information</h3>
+      </div>
+     <div class="card-body">
+       <h4>Name: {{name}}</h4>
+       <h4>Age: {{age}}</h4>
+       <h4>Password: {{password}}</h4>
+     </div>
+   </div>
   </div>
 </template>
 
@@ -42,28 +52,48 @@ export default {
   watch:{
     age(value){
       this.age = value;
-      if(value>0){
-        this.message['age']=''
+      if(value<200){
+        if(value>0){
+          this.message['age']=''
+        }else {
+          this.message['age']='Age must greater than 0'
+        }
       }else {
-        this.message['age']='Age must greater than 0'
+        this.message['age']='Age must be less than 200'
       }
     },
     name(value){
-      this.name = value
-      if(value.length>3){
-        this.message['name']=''
-      }else {
-        this.message['name']='Name must be greater than 3 character'
+      this.name= value
+      if(value.length>15){
+        this.message['name']='Name must be less than 15'
+      }else{
+        if(value.length>3){
+          this.message['name']=''
+        }else {
+          this.message['name']='Name must be greater than 3 character'
+        }
       }
     },
-    password(){
-      if(this.password.length > 8){
-        this.message['password']=''
-      }else {
-        this.message['password'] = 'Password must be greater 8 characters'
+    password(value){
+      this.password = value
+      if(value.length>100){
+        this.message['password']='Password must be less than 100'
+      }else{
+        if(value.length > 8){
+          this.message['password']=''
+        }else {
+          this.message['password'] = 'Password must be greater 8 characters'
+        }
       }
     }
   },
+  methods:{
+    show(event){
+      event.preventDefault()
+      console.log(document.getElementById('modals'))
+      document.getElementById('modals').classList.toggle('show')
+    }
+  }
 
 }
 </script>
@@ -72,5 +102,21 @@ export default {
 <style scoped>
 h3 {
   margin: 40px 0 0;
+}
+#modal{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.card{
+  display: none;
+}
+.show{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  display: block;
 }
 </style>
