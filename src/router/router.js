@@ -1,6 +1,8 @@
 import {createRouter,createWebHistory} from 'vue-router'
 import HomePage from "@/view/HomePage.vue";
 import AboutPage from "@/view/AboutPage.vue";
+import WatcherComponent from "@/view/WatcherComponent.vue";
+import CalculatorComponent from "@/view/CalculatorComponent.vue";
 
 const routes=[
     {
@@ -12,6 +14,17 @@ const routes=[
         'path':"/about",
         'name':'about',
         'component': AboutPage,
+    },
+    {
+        'path': '/watcher',
+        'name':'watcher',
+        'component':WatcherComponent
+
+    },
+    {
+        'path':'/calculator',
+        'name':'calculator',
+        'component':CalculatorComponent,
     }
 ]
 const router=new createRouter({
@@ -20,3 +33,4 @@ const router=new createRouter({
 })
 
 export default router;
+export{routes};

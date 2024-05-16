@@ -22,7 +22,7 @@ export default {
 
 <template>
 <div class="container-fluid d-flex justify-content-around p-2">
-  <ProductDetail v-for="product in products" :key="product.id" :product="product" />/>
+  <ProductDetail v-for="product in products" :key="product.id" :product="product" />
 </div>
 </template>
 
