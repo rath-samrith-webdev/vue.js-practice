@@ -4,6 +4,7 @@
     <router-link class="navbar-brand" to="/about">About</router-link>
     <router-link class="navbar-brand" to="/watcher">Contact</router-link>
     <router-link class="navbar-brand" to="/calculator">Calculator</router-link>
+    <router-link class="navbar-brand" to="/popup">Calculator</router-link>
   </nav>
   <router-view/>
 </template>

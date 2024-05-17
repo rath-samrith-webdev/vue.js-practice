@@ -3,6 +3,7 @@ import HomePage from "@/view/HomePage.vue";
 import AboutPage from "@/view/AboutPage.vue";
 import WatcherComponent from "@/view/WatcherComponent.vue";
 import CalculatorComponent from "@/view/CalculatorComponent.vue";
+import PopupPage from "@/view/PopupPage.vue";
 
 const routes=[
     {
@@ -25,6 +26,11 @@ const routes=[
         'path':'/calculator',
         'name':'calculator',
         'component':CalculatorComponent,
+    },
+    {
+        'path':'/popup',
+        'name':'popup',
+        'component':PopupPage,
     }
 ]
 const router=new createRouter({
