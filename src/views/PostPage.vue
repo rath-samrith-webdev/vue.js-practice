@@ -1,68 +1,73 @@
 <script>
+import axios from "axios";
 export default {
   name: "PostPage",
   data(){
     return{
-      posts:[]
+      posts:[],
+      categories:{},
+      deleteMessage:""
+    }
+  },
+  methods:{
+    async fetchCategories() {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/category/list");
+        if(response.data.success ==true){
+          this.posts = response.data.data;
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    },
+    async fetchCategory(event){
+      try {
+        const category = await axios.get("http://127.0.0.1:8000/api/category/show/"+event.target.id);
+        if(category.data.success ==true){
+          this.category= category.data.data;
+          console.log(this.category);
+        }
+      }catch (err){
+        console.error("Error fetching category:", err);
+      }
+    },
+    async removeCategory(event){
+      try {
+        const response = await axios.delete("http://127.0.0.1:8000/api/category/delete/"+event.target.id);
+        if(response.data.success == true){
+          this.deleteMessage="Deleted Successfully";
+        }
+      }catch (err){
+        console.error("Error fetching category:", err);
+      }
     }
   },
   mounted() {
-    fetch('http://localhost:8000/api/v1/posts/')
-    .then(res => res.json())
-        .then(data=>this.posts = data.data)
-        .catch(err => console.log(err));
+    this.fetchCategories()
   }
 }
 </script>
 
 <template>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send message</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <table v-if="posts.length!==0" class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Title</th>
-        <th>Body</th>
-        <th>Poster</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="post in posts" :key="post.id">
         <td>{{ post.id }}</td>
-        <td>{{ post.title }}</td>
-        <td>{{ post.body }}</td>
-        <td>{{ post.poster }}</td>
+        <td>{{ post.name }}</td>
+        <td>{{ post.description }}</td>
+        <td>
+          <button :id="post.id" @click="fetchCategory" class="btn-sm btn btn-outline-primary">Edit</button>
+          <button :id="post.id" @click="fetchCategory" class="btn-sm btn btn-outline-primary">View</button>
+          <button :id="post.id" @click="removeCategory" class="btn-sm btn btn-outline-danger">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>

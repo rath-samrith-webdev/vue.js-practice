@@ -20,7 +20,7 @@ const routes=[
         'component':merchItem
     },
     {
-        'path':'/post',
+        'path':'/categories',
         'name':'post',
         'component':PostPage
     }
