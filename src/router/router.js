@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import HomePage from "@/views/HomePage.vue";
 import AboutPage from "@/views/AboutPage.vue";
 import merchItem from "@/views/merchItem.vue";
+import PostPage from "@/views/PostPage.vue";
 const routes=[
     {
         'path':'/',
@@ -17,6 +18,11 @@ const routes=[
         'path':'/merch',
         'name':'merch',
         'component':merchItem
+    },
+    {
+        'path':'/post',
+        'name':'post',
+        'component':PostPage
     }
 ]
 

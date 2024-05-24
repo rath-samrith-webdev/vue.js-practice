@@ -1,7 +1,9 @@
 <template>
-  <NavBar/>
-  <router-view/>
-  <FooterComponent/>
+  <div class="container-md">
+    <NavBar/>
+    <router-view/>
+    <FooterComponent/>
+  </div>
 </template>
 
 <script>

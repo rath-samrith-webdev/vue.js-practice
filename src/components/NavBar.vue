@@ -2,6 +2,7 @@
 import HomePage from "@/views/HomePage.vue";
 import AboutPage from "@/views/AboutPage.vue";
 import merchItem from "@/views/merchItem.vue";
+import PostPage from "@/views/PostPage.vue";
 import {toUpperCase} from "uri-js/dist/esnext/util";
 
 export default {
@@ -24,6 +25,11 @@ export default {
           'path':'/merch',
           'name':'merch',
           'component':merchItem
+        },
+        {
+          'path':'/post',
+          'name':'post',
+          'component':PostPage
         }
       ]
     }
