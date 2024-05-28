@@ -48,7 +48,7 @@ export default {
       event.preventDefault();
       try {
         const response=await axios.get("http://127.0.0.1:8000/api/category/show/"+event.target.id);
-        if(response.status === 200){
+        if(response.status === 200) {
           this.updateData = response.data.data;
         }
       }catch (err){
@@ -131,7 +131,7 @@ export default {
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container mt-2">
     <div class="d-flex justify-content-end">
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Add Category</button>
     </div>
@@ -146,8 +146,8 @@ export default {
         </tr>
         </thead>
         <tbody>
-        <tr v-for="category in categories" :key="category.id">
-          <th scope="row">{{category.id}}</th>
+        <tr v-for="(category,index) in categories" :key="category.id">
+          <th scope="row">{{index+1}}</th>
           <td>{{ category.name }}</td>
           <td>{{category.description}}</td>
           <td class="d-flex justify-content-sm-around">
