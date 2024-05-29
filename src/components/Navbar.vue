@@ -36,6 +36,11 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/discounts">Discount</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/students"
+              >Student List</router-link
+            >
+          </li>
         </ul>
         <form class="d-flex">
           <input
@@ -57,5 +62,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
