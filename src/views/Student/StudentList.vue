@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr v-for="(student, index) in students" :key="student.id">
-            <td>{{ index }}</td>
+            <td>{{ index +1}}</td>
             <td>{{ student.name }}</td>
             <td>{{ student.age }}</td>
             <td>{{ student.province }}</td>

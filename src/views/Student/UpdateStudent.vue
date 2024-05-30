@@ -79,6 +79,7 @@ export default {
         );
         if (res.data.success) {
           this.student = res.data.data;
+          this.student.phone_number=res.data.data.phone;
           console.log(res.data.data);
         }
       } catch (err) {
