@@ -37,6 +37,7 @@
 <script>
 import axios from "axios";
 import { Form, Field, defineRule, ErrorMessage } from "vee-validate";
+// import { required,min } from "@vee-validate/rules";
 defineRule("required", (value) => {
   {
     if (!value || !value.length) {

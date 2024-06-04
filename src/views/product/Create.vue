@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <h1 class="mb-4">Create Product</h1>
-    <Form @submit="createProduct">
+    <Form @submit="createProduct" :validation-schema="categorySchema">
       <div class="mb-3">
         <label for="product-name" class="form-label">Name</label>
         <Field
@@ -47,16 +47,10 @@
     </Form>
   </div>
 </template>
-
 <script>
 import axios from "axios";
-import { Field, Form, defineRule, ErrorMessage } from "vee-validate";
-defineRule("required", (value) => {
-  if (!value || !value.length) {
-    return "This Field is required";
-  }
-  return true;
-});
+import { Field, Form, ErrorMessage } from "vee-validate";
+import { categorySchema } from "@/validation/validation";
 export default {
   name: "create-product",
   components: {
@@ -72,6 +66,7 @@ export default {
         description: "",
       },
       categories: [],
+      categorySchema: categorySchema,
     };
   },
   mounted() {

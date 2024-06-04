@@ -17,6 +17,7 @@ import StudentList from "@/views/Student/StudentList.vue";
 import createStudent from "@/views/Student/AddStudent.vue";
 import updateStudent from "@/views/Student/UpdateStudent.vue";
 import viewStudent from "@/views/Student/ViewStudent.vue";
+import CreateUser from "@/views/users/CreateUser.vue";
 const routes = [
   {
     path: "/",
@@ -115,6 +116,11 @@ const routes = [
     name: "view-student",
     component: viewStudent,
     props: true,
+  },
+  {
+    path: "/users/create",
+    name: "create-user",
+    component: CreateUser,
   },
 ];
 
