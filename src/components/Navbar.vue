@@ -41,6 +41,12 @@
               >Student List</router-link
             >
           </li>
+          <li class="nav-item" v-show="state.count > 0">
+            <router-link class="nav-link" to="">{{ state.count }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/api">API</router-link>
+          </li>
         </ul>
         <form class="d-flex">
           <input
@@ -57,8 +63,14 @@
 </template>
 
 <script>
+import { userCount } from "@/state/state";
 export default {
   name: "NavbarComponent",
+  data() {
+    return {
+      state: userCount(),
+    };
+  },
 };
 </script>
 

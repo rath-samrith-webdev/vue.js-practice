@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <h1 class="mb-4">Create Product</h1>
-    <Form @submit="createProduct" :validation-schema="categorySchema">
+    <Form @submit="createProduct" :validation-schema="productSchem">
       <div class="mb-3">
         <label for="product-name" class="form-label">Name</label>
         <Field
@@ -50,7 +50,7 @@
 <script>
 import axios from "axios";
 import { Field, Form, ErrorMessage } from "vee-validate";
-import { categorySchema } from "@/validation/validation";
+import { productSchema } from "@/validation/validation";
 export default {
   name: "create-product",
   components: {
@@ -66,7 +66,7 @@ export default {
         description: "",
       },
       categories: [],
-      categorySchema: categorySchema,
+      productSchem: productSchema,
     };
   },
   mounted() {

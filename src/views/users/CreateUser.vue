@@ -80,7 +80,7 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-import { userSchema } from "@/validation/validation-schema";
+import { userSchema } from "@/validation/validation";
 import axios from "axios";
 
 export default {
@@ -94,7 +94,7 @@ export default {
     return {
       user: {
         username: "",
-        age: "",
+        age: 0,
         email: "",
         password: "",
         confirmPassword: "",
