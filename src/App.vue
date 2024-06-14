@@ -1,64 +1,73 @@
 <template>
   <div class="container">
-    <NavbarVue />
-    <div class="mb-5">
-      <router-view></router-view>
+    <!-- Add User Form -->
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <form @submit.prevent="addUser" class="mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Name" v-model="newUser.name">
+            <input type="email" class="form-control" placeholder="Email" v-model="newUser.email">
+            <button type="submit" class="btn btn-primary">Add User</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <section class="">
-      <!-- Footer -->
-      <footer class="text-center text-white" style="background-color: #0a4275">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-          <!-- Section: CTA -->
-          <section class="">
-            <p class="d-flex justify-content-center align-items-center">
-              <span class="me-3">Register for free</span>
-              <button
-                data-mdb-ripple-init
-                type="button"
-                class="btn btn-outline-light btn-rounded"
-              >
-                Sign up!
-              </button>
-            </p>
-          </section>
-          <!-- Section: CTA -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div
-          class="text-center p-3"
-          style="background-color: rgba(0, 0, 0, 0.2)"
-        >
-          © 2020 Copyright:
-          <a class="text-white" href="https://mdbootstrap.com/"
-            >MDBootstrap.com</a
-          >
-        </div>
-        <!-- Copyright -->
-      </footer>
-      <!-- Footer -->
-    </section>
+    <!-- User List -->
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <ul class="list-group">
+          <li class="list-group-item" v-for="(user, index) in users" :key="index">
+            <div v-if="!user.editMode">
+              <span>{{ user.name }}</span> - <span>{{ user.email }}</span>
+              <button @click="removeUser(index)" class="btn btn-danger btn-sm float-end">Remove</button>
+              <button @click="toggleEditMode(user)" class="btn btn-primary btn-sm float-end me-2">Edit</button>
+            </div>
+            <div v-else>
+              <div class="input-group">
+                <input type="text" class="form-control" v-model="user.name">
+                <input type="email" class="form-control" v-model="user.email">
+                <button @click="saveUserEdit(user)" class="btn btn-success btn-sm">Save</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import NavbarVue from './components/Navbar.vue';
-
 export default {
-  components: {
-    NavbarVue
+  data() {
+    return {
+      users: [
+        { name: 'Alice', email: 'alice@example.com', editMode: false },
+        { name: 'Bob', email: 'bob@example.com', editMode: false },
+        { name: 'Charlie', email: 'charlie@example.com', editMode: false }
+      ],
+      newUser: { name: '', email: '' }
+    };
   },
+  methods: {
+    addUser() {
+      if (this.newUser.name && this.newUser.email) {
+        this.users.push({ ...this.newUser, editMode: false });
+        this.newUser = { name: '', email: '' };
+      }
+    },
+    removeUser(index) {
+      this.users.splice(index, 1);
+    },
+    toggleEditMode(user) {
+      user.editMode = !user.editMode;
+    },
+    saveUserEdit(user) {
+      user.editMode = false;
+    }
+  }
 };
 </script>
 
 <style>
-nav {
-  padding: 15px;
-}
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-}
+
 </style>

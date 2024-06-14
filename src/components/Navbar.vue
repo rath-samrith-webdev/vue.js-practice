@@ -47,6 +47,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/api">API</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/userlist">Users</router-link>
+          </li>
         </ul>
         <form class="d-flex">
           <input

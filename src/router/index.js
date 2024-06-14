@@ -19,6 +19,7 @@ import updateStudent from "@/views/Student/UpdateStudent.vue";
 import viewStudent from "@/views/Student/ViewStudent.vue";
 import CreateUser from "@/views/users/CreateUser.vue";
 import ApiList from "@/views/API/api.list.vue";
+import UserList from "@/views/users/UserList.vue";
 const routes = [
   {
     path: "/",
@@ -127,6 +128,11 @@ const routes = [
     path: "/api",
     name: "apilist",
     component: ApiList,
+  },
+  {
+    path: "/userlist",
+    name: "userList",
+    component: UserList,
   },
 ];
 
