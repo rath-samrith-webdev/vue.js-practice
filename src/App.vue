@@ -5,28 +5,29 @@
       <div class="col-md-6 mx-auto">
         <form @submit.prevent="addUser" class="mb-3">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Name" v-model="newUser.name">
-            <input type="email" class="form-control" placeholder="Email" v-model="newUser.email">
+            <input type="text" v-model="newUser.name" class="form-control" placeholder="Name">
+            <input type="email" v-model="newUser.email" class="form-control" placeholder="Email">
             <button type="submit" class="btn btn-primary">Add User</button>
           </div>
         </form>
       </div>
     </div>
+
     <!-- User List -->
     <div class="row">
       <div class="col-md-6 mx-auto">
         <ul class="list-group">
-          <li class="list-group-item" v-for="(user, index) in users" :key="index">
-            <div v-if="!user.editMode">
-              <span>{{ user.name }}</span> - <span>{{ user.email }}</span>
-              <button @click="removeUser(index)" class="btn btn-danger btn-sm float-end">Remove</button>
-              <button @click="toggleEditMode(user)" class="btn btn-primary btn-sm float-end me-2">Edit</button>
+          <li class="list-group-item" v-for="(user,index) in users" :key="index">
+            <div v-show="!user.editMode">
+              <span>{{user.name}}</span> - <span>{{user.email}}</span>
+              <button  class="btn btn-danger btn-sm float-end" @click="removeUser(index)">Remove</button>
+              <button  class="btn btn-primary btn-sm float-end me-2" @click="toggleEditMode(user)">Edit</button>
             </div>
-            <div v-else>
-              <div class="input-group">
-                <input type="text" class="form-control" v-model="user.name">
-                <input type="email" class="form-control" v-model="user.email">
-                <button @click="saveUserEdit(user)" class="btn btn-success btn-sm">Save</button>
+            <div>
+              <div class="input-group" v-show="user.editMode">
+                <input type="text" class="form-control" v-model="user.name" placeholder="Name">
+                <input type="email" class="form-control" v-model="user.email" placeholder="Email">
+                <button  class="btn btn-success btn-sm" @click="saveUserEdit(user)">Save</button>
               </div>
             </div>
           </li>
